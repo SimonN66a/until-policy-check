@@ -1,0 +1,9 @@
+/* UNTIL Design System — extras grid
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- extras ---- */
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(216px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:18px}
+.extra{background:var(--surface);padding:17px}
+.extra .nm{font-weight:700;font-size:15px}
+.extra .vl{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.45}

@@ -1,0 +1,12 @@
+/* UNTIL Design System — shell, bands, lede
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- shell ---- */
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+.band{padding:76px 0}
+.band.tight{padding:52px 0}
+.band--bone{background:var(--band)}
+.band--navy{background:#04082A;color:#FCFCFD}
+.band--navy .eyebrow{color:#A1A8EC}
+.band--navy .lede{color:#B9BEF1}
+.lede{color:var(--muted);font-size:17px;line-height:1.6;max-width:62ch}

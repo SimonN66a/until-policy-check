@@ -1,0 +1,12 @@
+/* UNTIL Design System — map SVG type scale
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- map type (SVG user units, so it scales with the viewBox) ---- */
+.mname{font-family:"Tungsten","D-DIN",sans-serif;font-weight:600;font-size:31px;text-anchor:middle}
+.maddr{font-family:"D-DIN",sans-serif;font-weight:700;font-size:11px;letter-spacing:1.3px;text-anchor:middle;opacity:.6}
+.mriver{font-family:"D-DIN",sans-serif;font-weight:700;font-size:14px;letter-spacing:4px;opacity:.4}
+@media(max-width:820px){
+  .mname{font-size:56px}
+  .maddr{display:none}
+  .mriver{font-size:26px;letter-spacing:7px}
+}

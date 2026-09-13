@@ -1,0 +1,48 @@
+/* UNTIL Design System — benefit tiles + verdict pills + detail overlay
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- benefit tiles ---- */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:18px}
+@media(max-width:1000px){.tiles{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.tiles{grid-template-columns:1fr}}
+.tile{position:relative;background:var(--surface);min-height:212px;display:flex;flex-direction:column;
+  isolation:isolate;transition:background .16s}
+.tile:hover{background:var(--band)}
+.tile.sel{background:var(--ok-wash)}
+.tile .head{padding:18px 18px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.tile .ico{width:34px;height:34px;color:var(--accent);flex:0 0 auto}
+.tile .ico svg{width:100%;height:100%;display:block}
+.tile.st-no .ico,.tile.st-unknown .ico{color:var(--faint)}
+.pill{font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:5px 9px;white-space:nowrap}
+.st-ok .pill{background:var(--ok-wash);color:var(--ok)}
+.st-limited .pill{background:var(--lim-wash);color:var(--lim)}
+.st-no .pill{background:var(--no-wash);color:var(--no)}
+.st-unknown .pill{background:var(--unk-wash);color:var(--unk)}
+.tile .main{padding:14px 18px 0;flex:1}
+.tile .nm{font-family:"Tungsten","D-DIN",sans-serif;font-weight:600;font-size:27px;line-height:.98;display:block}
+.tile .hl{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.42}
+.tile .at{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-top:11px}
+.tile .foot{margin-top:auto;padding:14px 18px 16px;position:relative;z-index:2}
+.selbtn{display:inline-flex;align-items:center;gap:9px;background:none;border:0;padding:0;cursor:pointer;
+  font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.selbtn .box{width:17px;height:17px;border:1.5px solid var(--line-2);display:grid;place-items:center;flex:0 0 auto;transition:background .14s,border-color .14s}
+.selbtn .box svg{width:11px;height:11px;color:var(--on-accent);opacity:0;transition:opacity .14s}
+.tile.sel .selbtn{color:var(--accent)}
+.tile.sel .selbtn .box{background:var(--accent);border-color:var(--accent)}
+.tile.sel .selbtn .box svg{opacity:1}
+.selbtn:hover .box{border-color:var(--accent)}
+.tile .detail{position:absolute;inset:0 0 62px 0;background:var(--surface);border-bottom:1px solid var(--line);
+  padding:18px;overflow:auto;opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:1}
+.tile:hover .detail,.tile.open .detail,.tile:focus-within .detail{opacity:1;visibility:visible;transform:none}
+.tile .detail .dt{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.tile .detail p{font-size:13.5px;line-height:1.5;margin-top:5px}
+.tile .detail .lim{margin-top:12px;font-size:13px;font-weight:700;color:var(--lim)}
+.tile .detail .who{margin-top:12px;font-size:13px;color:var(--muted)}
+.tile .detail blockquote{margin:12px 0 0;padding-left:11px;border-left:2px solid var(--line-2);
+  font-size:12.5px;line-height:1.45;color:var(--muted)}
+.tile .detail blockquote cite{display:block;font-style:normal;font-size:10px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-top:7px}
+.tile .detail blockquote.unver{border-left-color:var(--no)}

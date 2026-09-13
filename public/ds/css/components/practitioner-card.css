@@ -1,0 +1,18 @@
+/* UNTIL Design System — practitioner cards + tag rail
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- professionals ---- */
+.progrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+@media(max-width:880px){.progrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.progrid{grid-template-columns:1fr}}
+.pro{position:relative;overflow:hidden;background:#04082A;color:#FCFCFD}
+.pro img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .5s ease}
+.pro:hover img,.pro:focus-within img{transform:scale(1.04)}
+.pro .cap{position:absolute;inset:auto 0 0 0;padding:20px;
+  background:linear-gradient(to top,rgba(4,8,42,.94) 0%,rgba(4,8,42,.78) 46%,rgba(4,8,42,0) 100%)}
+.pro .cap h3{font-size:30px;color:#FCFCFD}
+.pro .cap .who{font-size:13px;color:#B9BEF1;margin-top:5px;line-height:1.45}
+.pro .cap .clubs{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#A1A8EC;margin-top:10px}
+.rail{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.rail span{border:1px solid #4451D9;color:#B9BEF1;font-size:11px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;padding:7px 13px}

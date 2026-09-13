@@ -1,0 +1,369 @@
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Find out which wellness and therapy services your private health insurance already covers, with the wording from your own policy behind every answer.">
+<meta name="color-scheme" content="light dark">
+<title>Unlock Your Cover — UNTIL</title>
+<link rel="icon" href="/ds/assets/brand/wordmark.png">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/ds/assets/fonts/d-din-regular.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/ds/assets/fonts/tungsten-semibold.woff2" crossorigin>
+<link rel="stylesheet" href="/ds/until.css">
+
+<!-- ==================== HOME ==================== -->
+<div id="viewHome">
+
+<div class="shell">
+  <header class="masthead">
+    <div class="wordmark" role="img" aria-label="UNTIL"></div>
+    <nav>
+      <a href="#clubs">Clubs</a>
+      <a href="#pros">Professionals</a>
+      <a href="#upload" class="keep">Check my cover</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Private medical insurance</p>
+        <h1>Unlock your private health insurance</h1>
+        <p class="sub">With London's best health professionals.</p>
+        <p class="lede">Most policies pay for a great deal more than a GP appointment, and most people
+          claim a fraction of it.</p>
+        <div class="actions herocta">
+          <a class="btn ghost" href="#clubs">Find your closest club</a>
+          <span class="note">Four clubs in central London</span>
+        </div>
+      </div>
+      <ol class="herosteps">
+        <li><span class="num">1</span><span class="tx">Upload your policy</span></li>
+        <li><span class="num">2</span><span class="tx">Find out your benefits</span></li>
+        <li><span class="num">3</span><span class="tx">Book an appointment with an approved clinician</span></li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<!-- upload -->
+<div class="band tight" id="upload">
+  <div class="shell">
+    <p class="eyebrow">Step one</p>
+    <div class="panel" style="margin-top:30px">
+      <h3>Your policy document</h3>
+      <p class="note" style="margin-top:6px">The document is read inside your browser. It is not uploaded to UNTIL and it is not stored.</p>
+
+      <div class="drop" id="drop">
+        <p class="big">Drop your policy here</p>
+        <p class="small">PDF or plain text, up to 10 MB</p>
+        <div class="actions mid">
+          <button class="btn ghost small" id="pickBtn" type="button">Choose file</button>
+          <button class="linkbtn" id="pasteToggle" type="button">Paste the wording instead</button>
+        </div>
+        <input type="file" id="file" accept=".pdf,.txt,.text,application/pdf,text/plain" class="vh" aria-label="Policy document">
+      </div>
+
+      <div id="pasteWrap" hidden>
+        <p class="note" style="margin:18px 0 8px">Paste the wording from your policy or member handbook.</p>
+        <textarea id="pasteBox" placeholder="Paste your policy wording here" aria-label="Policy wording"></textarea>
+      </div>
+
+      <div class="filerow" id="fileRow" hidden>
+        <div class="grow"><div class="nm" id="fileName"></div><div class="sz" id="fileSize"></div></div>
+        <button class="linkbtn" id="clearFile" type="button">Remove</button>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="analyseBtn" type="button" disabled>Check my cover</button>
+        <button class="linkbtn" id="exampleBtn" type="button">See a worked example</button>
+      </div>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- map -->
+<div class="band" id="clubs">
+  <div class="shell">
+    <div class="maphead">
+      <div>
+        <p class="eyebrow">Where you would be seen</p>
+        <h2>Four clubs across London</h2>
+      </div>
+      <p class="lede" style="max-width:44ch">Every service on your policy is delivered from one of these
+        addresses, by practitioners who work there full time.</p>
+    </div>
+
+    <div class="mapwrap">
+      <svg viewBox="0 0 1000 398" role="img" aria-label="Map of central London showing UNTIL clubs at Marylebone, Soho, Liverpool Street and Canary Wharf.">
+        <rect x="0" y="0" width="1000" height="398" fill="var(--map-land)"></rect>
+        <path d="M-30 348C-23.2 348.9 -30.6 348.4 0 352C30.6 355.6 57.4 369.0 105 364C152.6 359.0 168.1 364.9 210 330C251.9 295.1 254.2 241.5 290 210C325.8 178.5 332.4 195.3 368 191C403.6 186.7 411.2 187.6 447 191C482.8 194.4 496.1 198.3 526 206C555.9 213.7 555.0 217.3 579 225C603.0 232.7 608.2 243.4 632 240C655.8 236.6 660.2 221.1 684 210C707.8 198.9 707.1 193.5 737 191C766.9 188.5 787.4 190.4 816 199C844.6 207.6 845.1 207.9 863 229C880.9 250.1 885.5 262.3 895 292C904.5 321.7 893.2 341.2 905 360C916.8 378.8 927.7 378.4 947 375C966.3 371.6 974.6 370.6 990 345C1005.4 319.4 1005.9 285.8 1015 262C1024.1 238.2 1026.6 245.0 1030 240" fill="none" stroke="var(--map-river)" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"></path>
+        <text class="mriver" x="380" y="234" fill="var(--map-pin)">RIVER THAMES</text>        <a href="https://www.google.com/maps/search/?api=1&query=1%20Orchard%20Street%2C%20London%20W1H%206HJ%2C%20UK" target="_blank" rel="noopener" aria-label="Marylebone club, 1 Orchard Street, London W1H 6HJ, open in Google Maps">
+          <g class="pin">
+            <line x1="144" y1="84" x2="144" y2="148.5" stroke="var(--map-pin)" stroke-width="1.6"></line>
+            <circle cx="144" cy="148.5" r="7" fill="var(--map-pin)"></circle>
+            <circle cx="144" cy="148.5" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+            <text class="mname" x="144" y="56" fill="var(--map-pin)">Marylebone</text>
+            <text class="maddr" x="144" y="76" fill="var(--map-pin)">1 ORCHARD ST W1H</text>
+          </g>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=111%20Charing%20Cross%20Road%2C%20London%20WC2H%200DT%2C%20UK" target="_blank" rel="noopener" aria-label="Soho club, 111 Charing Cross Road, London WC2H 0DT, open in Google Maps">
+          <g class="pin">
+            <line x1="266" y1="126" x2="266" y2="144" stroke="var(--map-pin)" stroke-width="1.6"></line>
+            <circle cx="266" cy="144" r="7" fill="var(--map-pin)"></circle>
+            <circle cx="266" cy="144" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+            <text class="mname" x="266" y="98" fill="var(--map-pin)">Soho</text>
+            <text class="maddr" x="266" y="118" fill="var(--map-pin)">111 CHARING CROSS RD WC2H</text>
+          </g>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204RB%2C%20UK" target="_blank" rel="noopener" aria-label="Liverpool Street club, 280 Bishopsgate, London EC2M 4RB, open in Google Maps">
+          <g class="pin">
+            <line x1="522" y1="72" x2="522" y2="106" stroke="var(--map-pin)" stroke-width="1.6"></line>
+            <circle cx="522" cy="106" r="7" fill="var(--map-pin)"></circle>
+            <circle cx="522" cy="106" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+            <text class="mname" x="522" y="44" fill="var(--map-pin)">Liverpool Street</text>
+            <text class="maddr" x="522" y="64" fill="var(--map-pin)">280 BISHOPSGATE EC2M</text>
+          </g>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Unit%207%2C%2030%20South%20Colonnade%2C%20London%20E14%205HX%2C%20UK" target="_blank" rel="noopener" aria-label="Canary Wharf club, Unit 7, 30 South Colonnade, London E14 5HX, open in Google Maps">
+          <g class="pin">
+            <line x1="842" y1="180" x2="842" y2="221" stroke="var(--map-pin)" stroke-width="1.6"></line>
+            <circle cx="842" cy="221" r="7" fill="var(--map-pin)"></circle>
+            <circle cx="842" cy="221" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+            <text class="mname" x="842" y="152" fill="var(--map-pin)">Canary Wharf</text>
+            <text class="maddr" x="842" y="172" fill="var(--map-pin)">30 SOUTH COLONNADE E14</text>
+          </g>
+        </a>
+      </svg>
+    </div>
+
+    <div class="locgrid">
+      <div class="loc">
+        <img src="/ds/assets/photography/club-marylebone.webp" alt="The member clubhouse at UNTIL Marylebone, with lounge seating and a coffee bar." loading="lazy" decoding="async" width="560" height="420">
+        <div class="body"><h3>Marylebone</h3>
+          <p class="addr"><a href="https://www.google.com/maps/search/?api=1&query=1%20Orchard%20Street%2C%20London%20W1H%206HJ%2C%20UK" target="_blank" rel="noopener">1 Orchard Street<br>London W1H 6HJ<span class="mapsit" aria-hidden="true"></span><span class="vh"> — open in Google Maps</span></a></p>
+          <p class="tags">Medical · Dental · Treat</p></div>
+      </div>
+      <div class="loc">
+        <img src="/ds/assets/photography/club-soho.webp" alt="The gym floor at UNTIL Soho, lit low with racks along both walls." loading="lazy" decoding="async" width="560" height="420">
+        <div class="body"><h3>Soho</h3>
+          <p class="addr"><a href="https://www.google.com/maps/search/?api=1&query=111%20Charing%20Cross%20Road%2C%20London%20WC2H%200DT%2C%20UK" target="_blank" rel="noopener">111 Charing Cross Road<br>London WC2H 0DT<span class="mapsit" aria-hidden="true"></span><span class="vh"> — open in Google Maps</span></a></p>
+          <p class="tags">Treat · Train · Coach</p></div>
+      </div>
+      <div class="loc">
+        <img src="/ds/assets/photography/club-liverpool-street.webp" alt="The members lounge and kitchen at UNTIL Liverpool Street." loading="lazy" decoding="async" width="560" height="420">
+        <div class="body"><h3>Liverpool St</h3>
+          <p class="addr"><a href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204RB%2C%20UK" target="_blank" rel="noopener">280 Bishopsgate<br>London EC2M 4RB<span class="mapsit" aria-hidden="true"></span><span class="vh"> — open in Google Maps</span></a></p>
+          <p class="tags">Treat · Train</p></div>
+      </div>
+      <div class="loc">
+        <img src="/ds/assets/photography/club-canary-wharf.webp" alt="A treatment room at UNTIL Canary Wharf with a couch beside a full height window." loading="lazy" decoding="async" width="560" height="420">
+        <div class="body"><h3>Canary Wharf</h3>
+          <p class="addr"><a href="https://www.google.com/maps/search/?api=1&query=Unit%207%2C%2030%20South%20Colonnade%2C%20London%20E14%205HX%2C%20UK" target="_blank" rel="noopener">Unit 7, 30 South Colonnade<br>London E14 5HX<span class="mapsit" aria-hidden="true"></span><span class="vh"> — open in Google Maps</span></a></p>
+          <p class="tags">Medical · Dental · Treat · Train</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- professionals -->
+<div class="band band--navy" id="pros">
+  <div class="shell">
+    <p class="eyebrow">Who you would see</p>
+    <h2>Explore the professionals</h2>
+    <p class="lede" style="margin-top:16px">From physios to audiologists to therapists, all covered on your
+      insurance. We even have dentists.</p>
+
+    <div class="progrid">
+      <div class="pro"><img src="/ds/assets/photography/practitioner-physiotherapy.webp" alt="A treatment room set up for physiotherapy." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Physiotherapy</h3><p class="who">Physios, osteopaths, chiropractors and sports massage therapists.</p>
+        <p class="clubs">All four clubs</p></div></div>
+      <div class="pro"><img src="/ds/assets/photography/practitioner-audiology.webp" alt="A clinical consulting room with a treatment couch and a window over Canary Wharf." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Audiology</h3><p class="who">Hearing assessments, wax removal and tinnitus support.</p>
+        <p class="clubs">Marylebone · Canary Wharf</p></div></div>
+      <div class="pro"><img src="/ds/assets/photography/practitioner-talking-therapy.webp" alt="A coaching room with a sofa, armchair and low table." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Talking therapy</h3><p class="who">Psychotherapists, counsellors and performance coaches.</p>
+        <p class="clubs">Soho · Marylebone · Canary Wharf</p></div></div>
+      <div class="pro"><img src="/ds/assets/photography/practitioner-dentistry.webp" alt="A dental surgery at UNTIL Marylebone." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Dentistry</h3><p class="who">General dentistry, hygiene and cosmetic work.</p>
+        <p class="clubs">Marylebone · Canary Wharf</p></div></div>
+      <div class="pro"><img src="/ds/assets/photography/practitioner-private-gp.webp" alt="A private GP consulting room at UNTIL Marylebone." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Private GP</h3><p class="who">Same week appointments, referrals and health screening.</p>
+        <p class="clubs">Marylebone · Canary Wharf</p></div></div>
+      <div class="pro"><img src="/ds/assets/photography/practitioner-rehab-strength.webp" alt="The performance gym floor at UNTIL Canary Wharf." loading="lazy" decoding="async" width="680" height="850">
+        <div class="cap"><h3>Rehab and strength</h3><p class="who">Personal trainers and rehabilitation specialists.</p>
+        <p class="clubs">All four clubs</p></div></div>
+    </div>
+
+    <div class="rail">
+      <span>Physios</span><span>Osteopaths</span><span>Chiropractors</span><span>Audiologists</span>
+      <span>Dentists</span><span>Doctors</span><span>Psychotherapists</span><span>Nutritionists</span>
+      <span>Podiatrists</span><span>Acupuncturists</span><span>Massage therapists</span><span>Personal trainers</span>
+    </div>
+
+    <div class="actions" style="margin-top:34px">
+      <button class="btn" id="enquireTop" type="button">Enquire</button>
+      <button class="linkbtn" id="exampleBtn2" type="button">Or see a worked policy first</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <footer>
+    <div class="footin">
+      <div class="wordmark" role="img" aria-label="UNTIL"></div>
+      <p class="locked">London's best health professionals are here.</p>
+    </div>
+  </footer>
+</div>
+</div><!-- /viewHome -->
+
+<!-- ==================== EMAIL GATE ==================== -->
+<div id="viewGate" hidden>
+  <div class="shell">
+    <header class="masthead">
+      <div class="wordmark" role="img" aria-label="UNTIL"></div>
+      <nav><a href="#" id="gateBack" class="keep">Back</a></nav>
+    </header>
+  </div>
+  <div class="band">
+    <div class="shell">
+      <div class="gate">
+        <p class="eyebrow">Step 2 of 3</p>
+        <h2>Where should we send it?</h2>
+        <p class="lede" style="margin-top:14px">Your benefits summary is built from the document you just
+          gave us. Add your email and we will keep it with any booking request you make.</p>
+        <p class="why">We read <b id="gateDoc">your document</b> in this browser. Nothing in it leaves your
+          device, and we do not keep a copy of the file.</p>
+        <form id="gateForm" novalidate>
+          <div>
+            <label class="fl" for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div class="err-inline" id="gateErr"></div>
+          <div class="actions" style="margin-top:0">
+            <button class="btn" type="submit" id="gateGo">See my benefits</button>
+          </div>
+        </form>
+        <div class="status" id="gateStatus"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BENEFITS ==================== -->
+<div id="viewBenefits" hidden>
+  <div class="shell">
+    <header class="masthead">
+      <div class="wordmark" role="img" aria-label="UNTIL"></div>
+      <nav><a href="#" id="restart" class="keep">Check another policy</a></nav>
+    </header>
+
+    <div style="padding:44px 0 0">
+      <p class="eyebrow" id="benefitsEyebrow">Your cover</p>
+      <h2>What you can already claim</h2>
+      <p class="lede" style="margin-top:14px">Every judgement below comes from your own document. Hover or tap
+        a service to see the wording it was read from, then select the ones you want to book.</p>
+      <div class="banner" id="exampleBanner" hidden>
+        <strong>Worked example</strong>
+        <span id="exampleText"></span>
+      </div>
+      <dl class="facts" id="facts" style="margin-top:26px"></dl>
+      <div class="tally" id="tally"></div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="shell">
+      <div class="filterin">
+        <div class="searchbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L21 21"></path></svg>
+          <input type="search" id="search" placeholder="Search services, for example physio or dental" aria-label="Search services">
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <p class="resultcount" id="resultCount"></p>
+    <div class="tiles" id="tiles"></div>
+    <div id="extrasWrap" hidden>
+      <h3 style="margin-top:44px">Rewards and extras you may not have claimed</h3>
+      <div class="extras" id="extras"></div>
+    </div>
+    <p class="note" id="caveat" style="margin-top:26px;max-width:78ch"></p>
+  </div>
+
+  <div class="shell">
+    <div class="bookbar" id="bookbar">
+      <p class="cnt"><b id="selCount">0</b><span id="selWord">services selected</span></p>
+      <div class="actions" style="margin:0">
+        <button class="linkbtn" id="clearSel" type="button">Clear</button>
+        <button class="btn" id="bookBtn" type="button" disabled>Book with a professional</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <footer>
+      <div class="footin">
+        <div class="wordmark" role="img" aria-label="UNTIL"></div>
+        <p class="locked">London's best health professionals are here.</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ==================== ENQUIRY ==================== -->
+<div id="viewEnquire" hidden>
+  <div class="shell">
+    <header class="masthead">
+      <div class="wordmark" role="img" aria-label="UNTIL"></div>
+      <nav><a href="#" id="enqBack" class="keep">Back</a></nav>
+    </header>
+  </div>
+  <div class="band">
+    <div class="shell">
+      <div class="enq" id="enqInner">
+        <p class="eyebrow">Step 3 of 3</p>
+        <h2>Book with a professional</h2>
+        <p class="lede" style="margin-top:14px">Tell us where suits and we will match you to the right
+          practitioner at that club.</p>
+        <div class="picked" id="picked" style="margin-top:22px"></div>
+        <form id="enqForm" novalidate>
+          <div class="two">
+            <div><label class="fl" for="enqName">Your name</label>
+              <input type="text" id="enqName" autocomplete="name" required></div>
+            <div><label class="fl" for="enqEmail">Email</label>
+              <input type="email" id="enqEmail" autocomplete="email" required></div>
+          </div>
+          <div class="two">
+            <div><label class="fl" for="enqClub">Preferred club</label>
+              <select id="enqClub">
+                <option>Marylebone</option><option>Soho</option>
+                <option>Liverpool Street</option><option>Canary Wharf</option>
+                <option>No preference</option>
+              </select></div>
+            <div><label class="fl" for="enqInsurer">Your insurer</label>
+              <input type="text" id="enqInsurer" placeholder="For example Vitality"></div>
+          </div>
+          <div><label class="fl" for="enqMsg">Anything we should know</label>
+            <textarea id="enqMsg" style="min-height:110px" placeholder="Symptoms, timings, or a practitioner you have seen before"></textarea></div>
+          <div class="err-inline" id="enqErr"></div>
+          <p class="note">We use these details to arrange your appointment and nothing else. Anything you
+            write above is held with your request and shared only with the practitioner team at your club.
+            Ask us at any time and we will delete it.</p>
+          <div class="actions" style="margin-top:0">
+            <button class="btn" type="submit">Send my request</button>
+            <button class="linkbtn" type="button" id="enqCancel">Back to my benefits</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="/ds/app.js" defer></script>
+

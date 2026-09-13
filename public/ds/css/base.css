@@ -1,0 +1,14 @@
+/* UNTIL Design System — base: reset, body, focus, motion
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:"D-DIN","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

@@ -1,0 +1,12 @@
+/* UNTIL Design System — sticky booking bar
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- booking bar ---- */
+.bookbar{position:sticky;bottom:0;z-index:40;background:#04082A;color:#FCFCFD;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  padding:16px 22px;margin-top:34px;box-shadow:0 -8px 30px rgba(4,8,42,.22)}
+.bookbar .cnt{font-size:13px;color:#B9BEF1}
+.bookbar .cnt b{font-family:"Tungsten","D-DIN",sans-serif;font-weight:600;font-size:26px;color:#FCFCFD;
+  margin-right:7px;font-variant-numeric:tabular-nums;vertical-align:-2px}
+.bookbar .btn{background:#B9BEF1;color:#01030E;border-color:#B9BEF1}
+.bookbar .linkbtn{color:#A1A8EC}

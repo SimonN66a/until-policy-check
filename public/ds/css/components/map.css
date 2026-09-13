@@ -1,0 +1,32 @@
+/* UNTIL Design System — club map + location cards
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- map ---- */
+.maphead{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap}
+.mapwrap{margin-top:34px;border:1px solid var(--line);background:var(--map-land);overflow:hidden}
+.mapwrap svg{display:block;width:100%;height:auto}
+.locgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-top:0}
+@media(max-width:900px){.locgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.locgrid{grid-template-columns:1fr}}
+.loc{background:var(--surface);display:flex;flex-direction:column}
+.loc img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.loc .body{padding:18px 18px 22px}
+.loc h3{font-size:30px}
+.loc .addr{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45}
+.loc .tags{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-top:12px}
+
+/* ---- addresses as Google Maps links ----
+   The address text stays the link target, so the tap area is the thing you read.
+   A small caret marks it as leaving the site; it is decorative, and the real
+   destination is announced through the visually hidden text beside it. */
+.loc .addr a{color:inherit;text-decoration:none;display:inline-block}
+.loc .addr a:hover{color:var(--accent)}
+.loc .addr a:hover .mapsit{border-color:var(--accent)}
+.mapsit{display:inline-block;width:6px;height:6px;margin-left:7px;vertical-align:1px;
+  border-top:1.5px solid var(--line-2);border-right:1.5px solid var(--line-2);
+  transform:rotate(45deg);transition:border-color .14s}
+/* The whole pin — stalk, dot, both labels — is one link on the map. */
+.mapwrap a{cursor:pointer}
+.mapwrap a .pin{transition:opacity .14s}
+.mapwrap a:hover .pin{opacity:.72}
+.mapwrap a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}

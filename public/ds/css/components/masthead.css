@@ -1,0 +1,12 @@
+/* UNTIL Design System — masthead + wordmark
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- masthead ---- */
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0 0}
+.wordmark{width:98px;height:25px;background-color:var(--logo-ink);flex:0 0 auto;
+  -webkit-mask:var(--logo-mask) no-repeat left center/contain;mask:var(--logo-mask) no-repeat left center/contain}
+.band--navy .wordmark{background-color:#FCFCFD}
+.masthead nav{display:flex;gap:24px;align-items:center}
+.masthead nav a{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.masthead nav a:hover{color:var(--accent)}
+@media(max-width:640px){.masthead nav a:not(.keep){display:none}}

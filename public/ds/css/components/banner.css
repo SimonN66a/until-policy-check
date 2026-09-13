@@ -1,0 +1,8 @@
+/* UNTIL Design System — example banner
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- example banner ---- */
+.banner{display:flex;gap:12px 18px;align-items:baseline;flex-wrap:wrap;background:var(--unk-wash);
+  border:1px solid var(--line);padding:13px 17px;margin-top:24px}
+.banner strong{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.banner span{font-size:13.5px;color:var(--muted)}

@@ -1,0 +1,10 @@
+/* UNTIL Design System — brand typefaces.
+   Tungsten (display) and D-DIN (text). WOFF2 for the web; the source OTFs
+   sit alongside for design-tool use. Licensed to UNTIL — do not redistribute. */
+
+@font-face{font-family:"Tungsten";src:url("fonts/tungsten-semibold.woff2") format("woff2");
+  font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"D-DIN";src:url("fonts/d-din-regular.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"D-DIN";src:url("fonts/d-din-bold.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap}

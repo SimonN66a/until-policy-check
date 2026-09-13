@@ -1,0 +1,36 @@
+<!-- UNTIL club map. Hand-drawn, fixed 1000x398 viewBox. Colours come from
+     --map-land / --map-river / --map-pin, so it themes with the page.
+     Label type is styled by css/components/map-type.css. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 398" role="img" aria-label="Map of central London showing UNTIL clubs at Marylebone, Soho, Liverpool Street and Canary Wharf.">
+  <rect x="0" y="0" width="1000" height="398" fill="var(--map-land)"></rect>
+  <path d="M-30 348C-23.2 348.9 -30.6 348.4 0 352C30.6 355.6 57.4 369.0 105 364C152.6 359.0 168.1 364.9 210 330C251.9 295.1 254.2 241.5 290 210C325.8 178.5 332.4 195.3 368 191C403.6 186.7 411.2 187.6 447 191C482.8 194.4 496.1 198.3 526 206C555.9 213.7 555.0 217.3 579 225C603.0 232.7 608.2 243.4 632 240C655.8 236.6 660.2 221.1 684 210C707.8 198.9 707.1 193.5 737 191C766.9 188.5 787.4 190.4 816 199C844.6 207.6 845.1 207.9 863 229C880.9 250.1 885.5 262.3 895 292C904.5 321.7 893.2 341.2 905 360C916.8 378.8 927.7 378.4 947 375C966.3 371.6 974.6 370.6 990 345C1005.4 319.4 1005.9 285.8 1015 262C1024.1 238.2 1026.6 245.0 1030 240" fill="none" stroke="var(--map-river)" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text class="mriver" x="380" y="234" fill="var(--map-pin)">RIVER THAMES</text>
+  <g class="pin">
+  <line x1="144" y1="72" x2="144" y2="148.5" stroke="var(--map-pin)" stroke-width="1.6"></line>
+  <circle cx="144" cy="148.5" r="7" fill="var(--map-pin)"></circle>
+  <circle cx="144" cy="148.5" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+  <text class="mname" x="144" y="60" fill="var(--map-pin)">Marylebone</text>
+  <text class="maddr" x="144" y="80" fill="var(--map-pin)">1 ORCHARD ST W1H</text>
+  </g>
+  <g class="pin">
+  <line x1="266" y1="122" x2="266" y2="144" stroke="var(--map-pin)" stroke-width="1.6"></line>
+  <circle cx="266" cy="144" r="7" fill="var(--map-pin)"></circle>
+  <circle cx="266" cy="144" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+  <text class="mname" x="266" y="110" fill="var(--map-pin)">Soho</text>
+  <text class="maddr" x="266" y="130" fill="var(--map-pin)">111 CHARING CROSS RD WC2H</text>
+  </g>
+  <g class="pin">
+  <line x1="522" y1="56" x2="522" y2="106" stroke="var(--map-pin)" stroke-width="1.6"></line>
+  <circle cx="522" cy="106" r="7" fill="var(--map-pin)"></circle>
+  <circle cx="522" cy="106" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+  <text class="mname" x="522" y="44" fill="var(--map-pin)">Liverpool Street</text>
+  <text class="maddr" x="522" y="64" fill="var(--map-pin)">280 BISHOPSGATE EC2M</text>
+  </g>
+  <g class="pin">
+  <line x1="842" y1="164" x2="842" y2="221" stroke="var(--map-pin)" stroke-width="1.6"></line>
+  <circle cx="842" cy="221" r="7" fill="var(--map-pin)"></circle>
+  <circle cx="842" cy="221" r="14" fill="none" stroke="var(--map-pin)" stroke-width="1.2" opacity=".42"></circle>
+  <text class="mname" x="842" y="152" fill="var(--map-pin)">Canary Wharf</text>
+  <text class="maddr" x="842" y="172" fill="var(--map-pin)">30 SOUTH COLONNADE E14</text>
+  </g>
+  </svg>

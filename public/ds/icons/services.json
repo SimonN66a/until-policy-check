@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Physiotherapy",
+    "icon": "physio",
+    "practitioners": "Physiotherapists and sports rehabilitation specialists",
+    "clubs": "All four clubs"
+  },
+  {
+    "name": "Osteopathy",
+    "icon": "osteo",
+    "practitioners": "Registered osteopaths",
+    "clubs": "Soho, Marylebone, Liverpool St"
+  },
+  {
+    "name": "Chiropractic",
+    "icon": "chiro",
+    "practitioners": "Chiropractors",
+    "clubs": "Soho, Canary Wharf"
+  },
+  {
+    "name": "Sports and remedial massage",
+    "icon": "massage",
+    "practitioners": "Sports and remedial massage therapists",
+    "clubs": "All four clubs"
+  },
+  {
+    "name": "Acupuncture",
+    "icon": "acu",
+    "practitioners": "Acupuncturists and dry needling practitioners",
+    "clubs": "Soho, Marylebone"
+  },
+  {
+    "name": "Podiatry and chiropody",
+    "icon": "pod",
+    "practitioners": "Podiatrists",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Nutrition and dietetics",
+    "icon": "nutri",
+    "practitioners": "Registered nutritionists and dietitians",
+    "clubs": "All four clubs"
+  },
+  {
+    "name": "Mental health and talking therapy",
+    "icon": "mind",
+    "practitioners": "Psychotherapists and counsellors",
+    "clubs": "Soho, Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Women's health and menopause",
+    "icon": "venus",
+    "practitioners": "Women's health physios and menopause specialists",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Dentistry",
+    "icon": "tooth",
+    "practitioners": "Dentists and hygienists",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Audiology and hearing",
+    "icon": "ear",
+    "practitioners": "Audiologists",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Optical and eye health",
+    "icon": "eye",
+    "practitioners": "Optometrists",
+    "clubs": "Marylebone"
+  },
+  {
+    "name": "Private GP",
+    "icon": "steth",
+    "practitioners": "GMC registered GPs",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Health screening",
+    "icon": "clip",
+    "practitioners": "Screening doctors and nurses",
+    "clubs": "Marylebone, Canary Wharf"
+  },
+  {
+    "name": "Dermatology and skin",
+    "icon": "derm",
+    "practitioners": "Dermatologists and skin clinicians",
+    "clubs": "Marylebone"
+  },
+  {
+    "name": "Rehab and strength",
+    "icon": "bell",
+    "practitioners": "Personal trainers and rehabilitation coaches",
+    "clubs": "All four clubs"
+  }
+]

@@ -1,0 +1,15 @@
+/* UNTIL Design System — fact grid + tally
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ================= results view ================= */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.fact{background:var(--surface);padding:15px 17px}
+.fact dt{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 5px}
+.fact dd{margin:0;font-weight:700;font-size:16px;line-height:1.3}
+.fact dd.none{font-weight:400;font-size:13px;color:var(--unk)}
+.tally{display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line);border-top:0}
+.tally .t{background:var(--surface);padding:14px 17px;flex:1 1 128px;display:flex;align-items:baseline;gap:10px}
+.tally .n{font-family:"Tungsten","D-DIN",sans-serif;font-weight:600;font-size:36px;line-height:.86;font-variant-numeric:tabular-nums}
+.tally .l{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+.tally .t.ok .n{color:var(--ok)} .tally .t.limited .n{color:var(--lim)}
+.tally .t.no .n{color:var(--no)} .tally .t.unknown .n{color:var(--unk)}

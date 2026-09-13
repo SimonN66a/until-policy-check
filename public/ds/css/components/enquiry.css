@@ -1,0 +1,14 @@
+/* UNTIL Design System — enquiry form + confirmation
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- enquiry ---- */
+.enq{max-width:620px;margin:0 auto}
+.enq form{display:grid;gap:16px;margin-top:24px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.picked{background:var(--band);border:1px solid var(--line);padding:16px 18px}
+.picked ul{margin:9px 0 0;padding-left:18px;font-size:14px;line-height:1.65}
+.done{text-align:center;padding:16px 0}
+.done .tick{width:56px;height:56px;margin:0 auto 18px;border:1.5px solid var(--accent);border-radius:50%;
+  display:grid;place-items:center;color:var(--accent)}
+.done .tick svg{width:26px;height:26px}

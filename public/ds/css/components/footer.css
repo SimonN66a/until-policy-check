@@ -1,0 +1,7 @@
+/* UNTIL Design System — footer
+   Depends on tokens/tokens.css (and assets/fonts.css for the type roles). */
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 44px;margin-top:0}
+.footin{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.locked{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
