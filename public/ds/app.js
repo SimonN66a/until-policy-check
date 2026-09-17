@@ -82,11 +82,10 @@
 
   var META = {
     covered:     {cls:"st-ok",      label:"Covered",     key:"covered"},
-    limited:     {cls:"st-limited", label:"Limited",     key:"limited"},
     not_covered: {cls:"st-no",      label:"Not covered", key:"not_covered"},
     not_stated:  {cls:"st-unknown", label:"Not stated",  key:"not_stated"}
   };
-  var ORDER = {covered:0, limited:1, not_stated:2, not_covered:3};
+  var ORDER = {covered:0, not_stated:1, not_covered:2};
 
   /* ---------- state ---------- */
   var chosenFile = null, sampleFn = null, sampleReady = false;
@@ -215,11 +214,24 @@
       "   text. Do not paraphrase, tidy punctuation or join separate sentences. If you have no verbatim",
       "   sentence to quote, set evidence to null and status to \"not_stated\".",
       "4. Judge each service only on what the document says about THAT service.",
+      "5. Do NOT name any clinic, hospital group, physiotherapy chain, digital health app or",
+      "   provider network the document routes people to, and do not repeat their phone numbers,",
+      "   booking links or locations. Name the INSURER freely: the person needs to know who their",
+      "   cover is with. If a sentence both names a provider and states a condition, keep the",
+      "   condition and drop the name: \"you can self refer without a GP referral\" is right,",
+      "   \"you can self refer through <provider>\" is not.",
+      "6. Never remove a condition the person has to meet to be paid. Pre-authorisation, the need",
+      "   for a practitioner the insurer recognises, excesses, session caps and referral rules all",
+      "   stay, stated plainly. Someone who books believing they are covered when they are not ends",
+      "   up paying the bill themselves, and that matters more than any other consideration here.",
+      "   Prefer an evidence quote that does not name a provider; if the only quote available names",
+      "   one, set evidence to null rather than quoting it.",
       "",
       "STATUS VALUES.",
-      "\"covered\"     the document says this is paid for or provided.",
-      "\"limited\"     covered but capped, conditional, or only via a named route (session caps, network",
-      "              only, referral needed, excess applies, plan option required).",
+      "\"covered\"     the document says this is paid for or provided. Use this even when the cover is",
+      "              capped or conditional (session caps, referral needed, excess applies, plan option",
+      "              required). Cover with a condition attached is still cover, and the person needs to",
+      "              know they have it. Put the cap or condition in \"limit\" and say it in \"headline\".",
       "\"not_covered\" the document explicitly excludes it.",
       "\"not_stated\"  the document does not mention it either way. This is the correct answer far more",
       "              often than people expect. Use it freely.",
@@ -241,7 +253,7 @@
       '    "coveragePeriod": {"value": string|null}',
       "  },",
       '  "services": [',
-      '    {"name": string, "status": "covered"|"limited"|"not_covered"|"not_stated",',
+      '    {"name": string, "status": "covered"|"not_covered"|"not_stated",',
       '     "headline": string, "detail": string, "limit": string|null, "evidence": string|null}',
       "  ],",
       '  "extras": [{"name": string, "value": string}],',
@@ -251,7 +263,9 @@
       "",
       "\"headline\" is at most 10 words, plain English, no jargon.",
       "\"detail\" is one or two sentences telling the person what they can actually do next.",
-      "\"limit\" is the cap or condition in the document's own figures, or null.",
+      "\"limit\" is the cap or condition in the document's own figures, or null. If the status",
+      "is \"covered\" and the document attaches any cap, excess, referral rule or pre-authorisation",
+      "requirement, \"limit\" must state it. Do not leave it null in that case.",
       "\"docType\" names what this document actually is, in six words or fewer.",
       "\"caveat\" is one sentence naming the most important thing this document does NOT settle.",
       "Use British English. Do not use em dashes. Do not use emoji.",
@@ -260,6 +274,43 @@
       "DOCUMENT TEXT:",
       "-----", body, "-----"
     ].join("\n");
+  }
+
+  /* ---------- third-party providers ----------
+     The deployed app redacts server side in api/_lib/redact.js, which is the
+     authoritative list. This is the same rule applied in the browser, because the
+     artifact build asks Claude directly and never goes through the API. Keep the
+     two lists in step. Removes WHO to go to; never removes what you must DO. */
+  var BLOCKED = ["HCA Roodlane","Roodlane","HCA Healthcare","HCA UK","Nuffield Health",
+    "Spire Healthcare","Spire","Circle Health","Ramsay Health Care","Ramsay",
+    "Practice Plus Group","Optegra","Newmedica","Peppy","Bluecrest","Thriva","Babylon",
+    "Livi","Push Doctor","Vita Health Group","Ascenti","Physio Med","Connect Health",
+    "IPRS Health","Vitality GP","Care Hub","Onebright"].sort(function(a,b){ return b.length-a.length; });
+  var KEEPERS = ["pre-auth","preauth","pre auth","authoris","authoriz","recognis","recogniz",
+    "approved","excess","referral","refer","limit","cap","session","eligib","claim","must",
+    "need to","required","before"];
+  function rx(n, pre){
+    var e = n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/\s+/g,"\\s+");
+    return new RegExp((pre ? "(\\s*\\b(?:with|through|via|at|from|by|to)\\b)?\\s*" : "\\b") + e + "\\b","gi");
+  }
+  function named(t){
+    if (!t) return false;
+    for (var i=0;i<BLOCKED.length;i++) if (rx(BLOCKED[i]).test(String(t))) return true;
+    return false;
+  }
+  function scrub(t){
+    if (!t || !named(t)) return t;
+    var out = String(t).split(/(?<=[.!?])\s+/).filter(Boolean).map(function(sent){
+      if (!named(sent)) return sent;
+      var low = sent.toLowerCase(), keep = false;
+      for (var k=0;k<KEEPERS.length;k++) if (low.indexOf(KEEPERS[k]) !== -1) { keep = true; break; }
+      if (!keep) return "";
+      var v = sent;
+      for (var i=0;i<BLOCKED.length;i++) v = v.replace(rx(BLOCKED[i], true), "");
+      v = v.replace(/\s{2,}/g," ").replace(/\s+([,.;:])/g,"$1").trim();
+      return v.replace(/[^a-z]/gi,"").length >= 12 ? v : "";
+    }).filter(Boolean).join(" ").trim();
+    return out;
   }
 
   /* ---------- evidence check ---------- */
@@ -275,6 +326,17 @@
     return hay.indexOf(q.slice(0, Math.min(q.length, 90))) !== -1;
   }
 
+  /* Used when a row has no usable headline of its own. That happens either because
+     the model returned none, or because the one it returned named a third-party
+     provider and the scrub removed it. The wording must stay true for the status
+     it sits under: the old single fallback said "Covered, with conditions", which
+     read as a claim about cover even on rows we had excluded or never seen. */
+  var FALLBACK_HEADLINE = {
+    covered:     "Your document says this is covered",
+    not_covered: "Your document excludes this one",
+    not_stated:  "This document does not mention it"
+  };
+
   /* ---------- normalising the model's answer onto our catalogue ---------- */
   function merge(data){
     var got = {};
@@ -283,14 +345,20 @@
     });
     return SERVICES.map(function(cat){
       var s = got[cat.n.toLowerCase()] || {};
-      var st = META[s.status] ? s.status : "not_stated";
+      var raw = String(s.status || "").toLowerCase().trim();
+      /* "limited" was a separate bucket until v1.6.0. Cover with a condition is
+         still cover, so anything arriving under the old label is read as covered.
+         Kept because the model is swappable and not every provider will follow
+         the current prompt exactly. */
+      if (raw === "limited" || raw === "partial") raw = "covered";
+      var st = META[raw] ? raw : "not_stated";
       return {
         n: cat.n, i: cat.i, pro: cat.pro, clubs: cat.clubs,
         status: st,
-        headline: s.headline || (st === "not_stated" ? "This document does not mention it" : ""),
-        detail: s.detail || "Your document says nothing either way about this one. Your full plan terms may still cover it, so it is worth asking your insurer.",
-        limit: s.limit || null,
-        evidence: s.evidence || null
+        headline: scrub(s.headline) || FALLBACK_HEADLINE[st],
+        detail: scrub(s.detail) || "Your document says nothing either way about this one. Your full plan terms may still cover it, so it is worth asking your insurer.",
+        limit: scrub(s.limit) || null,
+        evidence: named(s.evidence) ? null : (s.evidence || null)
       };
     });
   }
@@ -316,25 +384,27 @@
       factCell("Plan", p.planName) + factCell("Policy number", p.policyNumber) +
       factCell("Cover period", p.coveragePeriod);
 
-    var c = {covered:0, limited:0, not_covered:0, not_stated:0};
+    var c = {covered:0, not_covered:0, not_stated:0};
     current.rows.forEach(function(r){ c[r.status]++; });
     $("tally").innerHTML =
       '<div class="t ok"><span class="n">'+c.covered+'</span><span class="l">Covered</span></div>' +
-      '<div class="t limited"><span class="n">'+c.limited+'</span><span class="l">Limited</span></div>' +
       '<div class="t no"><span class="n">'+c.not_covered+'</span><span class="l">Not covered</span></div>' +
       '<div class="t unknown"><span class="n">'+c.not_stated+'</span><span class="l">Not stated</span></div>';
 
     $("benefitsEyebrow").textContent = data.docType ? ("Read as: " + data.docType) : "Your cover";
 
     var CH = [["all","All",current.rows.length],["covered","Covered",c.covered],
-              ["limited","Limited",c.limited],["not_covered","Not covered",c.not_covered],
+              ["not_covered","Not covered",c.not_covered],
               ["not_stated","Not stated",c.not_stated]];
     $("chips").innerHTML = CH.map(function(x){
       return '<button class="chip" type="button" data-st="'+x[0]+'" aria-pressed="'+(x[0]==="all")+'">' +
              esc(x[1]) + ' <span class="c">' + x[2] + '</span></button>';
     }).join("");
 
-    var extras = Array.isArray(data.extras) ? data.extras.filter(function(x){ return x && x.name; }) : [];
+    // A perk that is really a signup to someone else's service is not a perk we surface.
+    var extras = (Array.isArray(data.extras) ? data.extras : []).filter(function(x){
+      return x && x.name && !named(x.name) && !named(x.value);
+    });
     $("extrasWrap").hidden = extras.length === 0;
     $("extras").innerHTML = extras.map(function(x){
       return '<div class="extra"><div class="nm">'+esc(x.name)+'</div><div class="vl">'+esc(x.value||"")+'</div></div>';
@@ -445,13 +515,30 @@
         list.map(function(r){ return '<li>' + esc(r.n) + ' <span style="color:var(--faint)">' + esc(r.pro) + '</span></li>'; }).join("") + '</ul>'
       : '<p class="dt" style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)">General enquiry</p>' +
         '<p style="margin-top:8px;font-size:14px">Tell us what you are after and we will point you at the right practitioner.</p>';
+    /* Someone who came straight here from "Get matched with a practitioner" has not done
+       steps one and two, so do not tell them this is step three of three. */
+    var eyebrow = $("enqEyebrow"), title = $("enqTitle");
+    if (eyebrow) eyebrow.textContent = current ? "Step 3 of 3" : "No policy needed";
+    if (title) title.textContent = current ? "Book with a professional" : "Get matched with a practitioner";
+
     if (userEmail) $("enqEmail").value = userEmail;
     var ins = current && current.data && current.data.policy && current.data.policy.insurer;
     if (ins && ins.value) $("enqInsurer").value = ins.value;
     show("viewEnquire");
   }
   $("bookBtn").addEventListener("click", openEnquiry);
-  $("enquireTop").addEventListener("click", function(){
+
+  /* Any control marked data-cta="enquire" opens the enquiry form. The co-branded
+     pages use this for both calls to action, so "Get matched with a practitioner" does the
+     same thing wherever it is clicked. No example policy is loaded first: with no
+     reading to show, openEnquiry falls back to its general enquiry copy, which is
+     honest, rather than seeding the form with a fictional insurer. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cta="enquire"]'),
+    function(el){ el.addEventListener("click", function(e){ e.preventDefault(); openEnquiry(); }); });
+
+  /* The un-branded and Meta pages still carry the original button. */
+  var enquireTop = $("enquireTop");
+  if (enquireTop) enquireTop.addEventListener("click", function(){
     if (!current) loadExample(true);
     openEnquiry();
   });
@@ -643,12 +730,12 @@
       policyNumber:{value:null}, coveragePeriod:{value:null}
     },
     services: [
-      {name:"Physiotherapy", status:"limited",
+      {name:"Physiotherapy", status:"covered",
        headline:"Six sessions without seeing a GP first",
        detail:"You can refer yourself straight to a physiotherapist through Care Hub. Six sessions are included, and the cap lifts to full cover if your plan has Out-patient Cover.",
        limit:"Up to 6 sessions, or full cover with Out-patient Cover selected",
        evidence:"Treatment is covered in full when Out-patient Cover is selected. If Out-patient Cover is not selected, up to 6 sessions of physiotherapy are available when arranged through our network partner."},
-      {name:"Mental health and talking therapy", status:"limited",
+      {name:"Mental health and talking therapy", status:"covered",
        headline:"Eight sessions, no GP referral needed",
        detail:"You can self-refer for talking therapy rather than waiting for a GP appointment. Book the first session and start.",
        limit:"Up to 8 sessions without a GP referral",
@@ -668,12 +755,12 @@
        detail:"Book the Bluecrest check each plan year. It also unlocks the Personal Health Fund you can spend on dental and optical.",
        limit:null,
        evidence:"Vitality Healthcheck: No additional cost. An annual health check through our partner Bluecrest, measuring blood pressure, Body Mass Index, glucose and cholesterol levels."},
-      {name:"Dentistry", status:"limited",
+      {name:"Dentistry", status:"covered",
        headline:"Paid from a £75 yearly health fund",
        detail:"Everyday dental costs come out of your Personal Health Fund, which you unlock by completing the online Health Review.",
        limit:"£75 per plan year, shared with optical",
        evidence:"The Personal Health Fund (PHF) is a pot of money that you can use to help pay for everyday healthcare expenses such as optical costs and dental care. You start off with £75 in your fund each plan year after you have completed your online Health Review."},
-      {name:"Optical and eye health", status:"limited",
+      {name:"Optical and eye health", status:"covered",
        headline:"Same £75 fund covers optical costs",
        detail:"Optical sits in the same pot as dental, so the fund is spent once. Complete the Health Review first or the fund stays locked.",
        limit:"£75 per plan year, shared with dental",
