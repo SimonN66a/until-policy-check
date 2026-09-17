@@ -4,7 +4,10 @@
 <meta name="description" content="Find out which wellness and therapy services your private health insurance already covers, with the wording from your own policy behind every answer.">
 <meta name="color-scheme" content="light dark">
 <title>Your Clinic Is In Your Building</title>
-<link rel="icon" href="/ds/assets/brand/wordmark.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/ds/assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/ds/assets/brand/favicon-16.png">
+<link rel="icon" href="/ds/assets/brand/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/ds/assets/brand/favicon-180.png">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/ds/assets/fonts/d-din-regular.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/ds/assets/fonts/tungsten-semibold.woff2" crossorigin>
@@ -78,6 +81,44 @@
 .svclist .cov-no .svg,.svclist .cov-no svg{color:var(--faint)}
 @media(max-width:520px){.svclist li{grid-template-columns:27px minmax(0,1fr);row-gap:3px}
   .svclist .c{grid-column:2;text-align:left}}
+/* --- concise address line, replaces the old two-column .legs block ---------- */
+.here .hd .addrline{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.here .hd .addrline a{font-size:13px;color:var(--muted);text-decoration:none}
+.here .hd .addrline a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.here .hd .addrline .sep{width:3px;height:3px;border-radius:50%;background:var(--line-2);flex:0 0 auto}
+
+/* --- the 2x2: location down, payment across ------------------------------- */
+.twoup--quad{grid-template-columns:1fr 1fr}
+@media(max-width:760px){.twoup--quad{grid-template-columns:1fr}}
+.payhd{font-size:12px;font-weight:700;letter-spacing:.06em;line-height:1.45;
+  margin:0 0 14px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.payhd--yes{color:var(--ok)}
+.payhd--no{color:var(--muted)}
+
+/* The allowance from the firm's own scheme, once we have it: "6 sessions a year".
+   Absent by default, because the .c label above it is a generalisation. */
+.lim{grid-column:3;justify-self:end;margin-top:3px;white-space:nowrap;
+  font-size:10.5px;font-weight:700;letter-spacing:.02em;color:var(--ink);
+  background:rgba(0,0,0,.05);padding:3px 8px;border-radius:3px}
+@media(max-width:560px){.lim{white-space:normal;text-align:right}}
+
+/* --- the wider estate, kept deliberately light ------------------------------
+   The building is the argument, so it gets the detailed rows. The other three
+   clubs are the "and there is more" line, so they get chips: same information,
+   a fraction of the height and none of the visual weight. */
+.elsewhere{border-top:1px solid var(--line);background:var(--surface);padding:20px 26px 22px}
+.ew-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ew-where{font-size:12.5px;color:var(--faint)}
+.ew-row{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-top:9px}
+.ew-k{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);flex:0 0 136px;padding-top:5px}
+.ew-k--yes{color:var(--ok)}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;flex:1 1 240px}
+.chips li{font-size:12.5px;font-weight:700;line-height:1;padding:6px 10px;border-radius:3px;
+  border:1px solid var(--line-2);color:var(--muted)}
+.chips--yes li{border-color:transparent;background:var(--ok);color:var(--surface)}
+@media(max-width:560px){.ew-k{flex:0 0 100%;padding-top:0}}
+
 .blurb{font-size:13px;color:var(--muted);line-height:1.55;margin-top:18px;
   padding-top:15px;border-top:1px solid var(--line)}
 </style>
@@ -101,18 +142,17 @@
         <p class="eyebrow">For Baker McKenzie, 280 Bishopsgate</p>
         <h1>Your clinic is in your building</h1>
         <p class="sub">And your policy already pays for it.</p>
-        <p class="lede">Some of it your policy already pays for, in this building. The rest is the
-          conversation worth having. Upload your policy and see which is which, with the wording
-          from your own document behind every answer.</p>
+        <p class="lede">Physiotherapy, osteopathy and sports massage are all in your building, and
+          most private schemes already pay for them. Tell us what you need and we will match you with
+          a practitioner here. Or check your policy first, and see the wording behind every answer.</p>
         <div class="actions herocta">
-          <a class="btn" href="#upload">Upload your policy</a>
-          <span class="note">Step one of three, and it takes about a minute.</span>
+          <button class="btn" type="button" data-cta="enquire">Get matched with a practitioner</button>
         </div>
       </div>
       <ol class="herosteps">
         <li><span class="num">1</span><span class="tx">Upload your policy</span></li>
         <li><span class="num">2</span><span class="tx">Find out your benefits</span></li>
-        <li><span class="num">3</span><span class="tx">Book an appointment with an approved clinician</span></li>
+        <li><span class="num">3</span><span class="tx">Get matched with an approved practitioner</span></li>
       </ol>
     </div>
 
@@ -121,48 +161,48 @@
         <div>
           <p class="lb">Your office and your nearest club</p>
           <h3>Both at 280 Bishopsgate</h3>
+          <p class="addrline"><a href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204AG%2C%20UK" target="_blank" rel="noopener">Baker McKenzie London, EC2M 4AG</a><span class="sep"></span><a href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204RB%2C%20UK" target="_blank" rel="noopener">UNTIL Liverpool Street, EC2M 4RB</a></p>
         </div>
         <p class="same">Same building</p>
       </div>
-      <div class="legs">
-        <div class="leg">
-          <p class="k">Both in this building</p>
-          <p class="nm">280 Bishopsgate</p>
-          <ul class="occs">
-            <li><span class="on">Baker McKenzie London</span><a class="oa" href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204AG%2C%20UK" target="_blank" rel="noopener">London EC2M 4AG</a><span class="ot">Where you work</span></li>
-            <li><span class="on">UNTIL Liverpool Street</span><a class="oa" href="https://www.google.com/maps/search/?api=1&query=280%20Bishopsgate%2C%20London%20EC2M%204RB%2C%20UK" target="_blank" rel="noopener">London EC2M 4RB</a><span class="ot">Treat · Train</span></li>
-          </ul>
-          <p class="legnote">One address, two front doors. The two postcodes differ only because
-            the club and the office are separately registered units.</p>
+
+      <!-- FOUR BLOCKS, TWO AXES.
+           Down the page: where it is (this building, then the other three clubs).
+           Across: how it is paid for (policy, then self-pay).
+
+           THE SPECIFICS SLOT. Each covered row can carry a <span class="lim"> with the
+           real allowance from the firm's own scheme, e.g. "6 sessions a year". Until the
+           Baker McKenzie policy is in hand those are left off, and the .c label says what
+           private medical insurance TYPICALLY does, which is a generalisation, not a
+           reading of their scheme. -->
+      <div class="twoup">
+        <div class="blk">
+          <p class="payhd payhd--yes">This building, covered by your policy, typically</p>
+          <ul class="svclist"><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M6 17v3M18 17v3"/><path d="M3 17v-3h10l4 3"/><circle cx="7.5" cy="10" r="2.2"/></svg><span class="s">Physiotherapy</span><span class="c">Usually covered</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21V10.5a1.5 1.5 0 0 1 3 0V13"/><path d="M12 13V8.5a1.5 1.5 0 0 1 3 0V13"/><path d="M15 13v-1.5a1.5 1.5 0 0 1 3 0V17a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5v-3.5"/></svg><span class="s">Osteopathy</span><span class="c">Usually covered</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18.5c4.5-6.5 15.5-6.5 20 0"/><circle cx="9" cy="11" r="2.3"/><circle cx="15" cy="11" r="2.3"/></svg><span class="s">Sports massage</span><span class="c">Often covered</span></li></ul>
+          <p class="blurb">The three a musculoskeletal claim most often pays for, and all three are
+            in the building you already work in.</p>
         </div>
-        <div class="leg">
-          <p class="k">The other three UNTIL clubs</p>
-          <p class="nm">Across London</p>
-          <ul class="occs occs--clubs">
-            <li><span class="on">UNTIL Soho</span><a class="oa" href="https://www.google.com/maps/search/?api=1&query=111%20Charing%20Cross%20Road%2C%20London%20WC2H%200DT%2C%20UK" target="_blank" rel="noopener">111 Charing Cross Road WC2H</a></li>
-            <li><span class="on">UNTIL Marylebone</span><a class="oa" href="https://www.google.com/maps/search/?api=1&query=1%20Orchard%20Street%2C%20London%20W1H%206HJ%2C%20UK" target="_blank" rel="noopener">1 Orchard Street W1H</a></li>
-            <li><span class="on">UNTIL Canary Wharf</span><a class="oa" href="https://www.google.com/maps/search/?api=1&query=Unit%207%2C%2030%20South%20Colonnade%2C%20London%20E14%205HX%2C%20UK" target="_blank" rel="noopener">30 South Colonnade E14</a></li>
-          </ul>
-          <p class="legnote">All four clubs are open to everyone on the arrangement, so a booking is
-            never limited to the building someone happens to sit in.</p>
+
+        <div class="blk">
+          <p class="payhd payhd--no">This building, self-pay</p>
+          <ul class="svclist"><li class="cov-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9v6M6.2 6.5v11M17.8 6.5v11M21 9v6M6.2 12h11.6"/></svg><span class="s">Rehab and strength</span><span class="c">Rarely covered</span></li><li class="cov-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.2c-1.1-1.9-4-2.3-5.4-.8C5 8.9 5 12.3 6.4 15.2c1 2 2.4 4.8 3.7 4.8.9 0 1.1-.6 1.9-.6s1 .6 1.9.6c1.3 0 2.7-2.8 3.7-4.8 1.4-2.9 1.4-6.3 0-7.8-1.4-1.5-4.3-1.1-5.6.8z"/><path d="M12 8.2V5.4c0-1.3 1.1-2.4 2.6-2.4"/></svg><span class="s">Nutrition and dietetics</span><span class="c">On referral only</span></li></ul>
+          <p class="blurb">Personal training, exercise physiology and aesthetics run here too. None of
+            it needs a claim, and none of it needs anyone to leave the building.</p>
         </div>
       </div>
 
-
-
-      <div class="twoup">
-        <div class="blk">
-          <p class="tier">In this building &mdash; 280 Bishopsgate</p>
-          <ul class="svclist"><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M6 17v3M18 17v3"/><path d="M3 17v-3h10l4 3"/><circle cx="7.5" cy="10" r="2.2"/></svg><span class="s">Physiotherapy</span><span class="c">Usually covered</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21V10.5a1.5 1.5 0 0 1 3 0V13"/><path d="M12 13V8.5a1.5 1.5 0 0 1 3 0V13"/><path d="M15 13v-1.5a1.5 1.5 0 0 1 3 0V17a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5v-3.5"/></svg><span class="s">Osteopathy</span><span class="c">Usually covered</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18.5c4.5-6.5 15.5-6.5 20 0"/><circle cx="9" cy="11" r="2.3"/><circle cx="15" cy="11" r="2.3"/></svg><span class="s">Sports massage</span><span class="c">Often covered</span></li><li class="cov-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9v6M6.2 6.5v11M17.8 6.5v11M21 9v6M6.2 12h11.6"/></svg><span class="s">Rehab and strength</span><span class="c">Rarely covered</span></li></ul>
-          <p class="blurb">Three of these four your policy most likely already pays for, and all
-            four are a lift ride away. That is the part that needs no budget and no decision.</p>
+      <div class="elsewhere">
+        <div class="ew-hd">
+          <p class="tier">The other three clubs</p>
+          <p class="ew-where">Soho &middot; Marylebone &middot; Canary Wharf</p>
         </div>
-        <div class="blk">
-          <p class="tier">Across all four clubs</p>
-          <ul class="svclist"><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.4C10.2 3 7.4 2.5 6 4S4.4 8.4 5.3 12.2C6.2 16 6.6 20.5 8.2 20.5s1.4-5.2 3.8-5.2 2.2 5.2 3.8 5.2 2-4.5 2.9-8.3c.9-3.8 1.3-6.7-.1-8.2s-4.2-1-6 .4z"/></svg><span class="s">Dentistry</span><span class="c">Often covered, with limits</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5.5a4.2 4.2 0 0 0 8.4 0V3"/><path d="M4.2 3h3.4M12.8 3h3.4"/><path d="M10.2 12.7v2.1a5.2 5.2 0 0 0 5.2 5.2h.2"/><circle cx="18.2" cy="17.8" r="2.6"/></svg><span class="s">Private GP</span><span class="c">Often covered</span></li><li class="cov-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 21v-2.6a5.6 5.6 0 0 0 3-5A7.6 7.6 0 1 0 6 19.8V21"/><circle cx="11.6" cy="10.4" r="2.5"/></svg><span class="s">Talking therapy</span><span class="c">Often covered, with limits</span></li><li class="cov-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.2c-1.1-1.9-4-2.3-5.4-.8C5 8.9 5 12.3 6.4 15.2c1 2 2.4 4.8 3.7 4.8.9 0 1.1-.6 1.9-.6s1 .6 1.9.6c1.3 0 2.7-2.8 3.7-4.8 1.4-2.9 1.4-6.3 0-7.8-1.4-1.5-4.3-1.1-5.6.8z"/><path d="M12 8.2V5.4c0-1.3 1.1-2.4 2.6-2.4"/></svg><span class="s">Nutrition and dietetics</span><span class="c">Sometimes covered, on referral</span></li></ul>
-          <p class="blurb">Plus eleven more services at Soho, Marylebone and Canary Wharf. Dentistry,
-            private GP and nutrition run at Liverpool Street too, so a firmwide arrangement reaches
-            everyone rather than one building.</p>
+        <div class="ew-row">
+          <span class="ew-k ew-k--yes">Covered, typically</span>
+          <ul class="chips chips--yes"><li>Dentistry</li><li>Private GP</li><li>Talking therapy</li></ul>
+        </div>
+        <div class="ew-row">
+          <span class="ew-k">Self-pay</span>
+          <ul class="chips"><li>Women's health</li><li>Dermatology</li><li>Health screening</li><li>Audiology</li><li>Optical</li><li>Podiatry</li><li>Acupuncture</li><li>Chiropractic</li></ul>
         </div>
       </div>
     </div>
@@ -327,7 +367,7 @@
     </div>
 
     <div class="actions" style="margin-top:34px">
-      <button class="btn" id="enquireTop" type="button">Enquire</button>
+      <button class="btn" type="button" data-cta="enquire">Get matched with a practitioner</button>
       <button class="linkbtn" id="exampleBtn2" type="button">Or see a worked policy first</button>
     </div>
   </div>
@@ -451,8 +491,8 @@
   <div class="band">
     <div class="shell">
       <div class="enq" id="enqInner">
-        <p class="eyebrow">Step 3 of 3</p>
-        <h2>Book with a professional</h2>
+        <p class="eyebrow" id="enqEyebrow">Step 3 of 3</p>
+        <h2 id="enqTitle">Book with a professional</h2>
         <p class="lede" style="margin-top:14px">Tell us where suits and we will match you to the right
           practitioner at that club.</p>
         <div class="picked" id="picked" style="margin-top:22px"></div>
